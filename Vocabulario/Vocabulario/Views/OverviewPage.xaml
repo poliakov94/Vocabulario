@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Vocabulario.Views.OverviewPage">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label Text="Welcome to Vocabulario!"
+				   HorizontalOptions="CenterAndExpand"
+				   VerticalOptions="CenterAndExpand"
+				   FontSize="22"/>
+			<Label FontSize="16"
+				   Margin="10,10,10,10">
+				<Label.FormattedText>
+					<FormattedString>
+						<FormattedString.Spans>
+							<Span Text="Learn vocabulary of different languages easily. Start by choosing a language from the menu!"/>
+							<Span Text="Start from the first level and level up to become a vocabulario master! You can watch your improvements through the progress page."/>
+						</FormattedString.Spans>
+					</FormattedString>
+				</Label.FormattedText>
+			</Label>
+			<Button x:Name="StartButton"
+					Text="Click me to start!"
+					Clicked="StartButton_Clicked"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"/>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

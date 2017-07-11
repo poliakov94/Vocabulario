@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Vocabulario.Views.LanguageDetailPage">
+	<ContentPage.Content>
+		<StackLayout Spacing="20" Padding="15">
+			<Image Source="{Binding Language.Flag}"/>
+			<Label Text="{Binding Language.Name}" FontSize="Medium"/>
+			<Label Text="{Binding Language.Description}" FontSize="Small"/>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
