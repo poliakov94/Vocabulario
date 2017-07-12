@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vocabulario.Views.NewLanguagePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
-    </ContentPage.Content>
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Vocabulario.Views.NewLanguagePage">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout Spacing="20" Padding="15">
+			<Label Text="Language" FontSize="Medium" />
+			<Entry Text="{Binding Language.Name}" FontSize="Small" />
+			<Label Text="Description" FontSize="Medium" />
+			<Editor Text="{Binding Language.Description}" FontSize="Small" Margin="0" />
+			<Label Text="Country" FontSize="Medium" />
+			<Editor Text="{Binding Language.Flag}" FontSize="Small" Margin="0" />
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>
