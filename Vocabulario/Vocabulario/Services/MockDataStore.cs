@@ -69,44 +69,22 @@ namespace Vocabulario.Services
 			return await Task.FromResult(true);
 		}
 
-		public async Task InitializeMockAsync()
-		{
-			if (isInitialized)
-				return;
-
-			languages = new List<Language>();
-			var _languages = new List<Language>
-			{
-				new Language { ID = 1, Name = "English", Description = "The cats are hungry", Flag = "united_kingdom.png"},
-				new Language { ID = 2, Name = "Francais", Description = "Les chats ont faim", Flag = "france.png"},
-				new Language { ID = 3, Name = "Espanol", Description = "Los gatos tienen hambre", Flag = "spain.png"},
-				new Language { ID = 4, Name = "Italiano", Description = "I gatti hanno fame", Flag = "italy.png"},
-				new Language { ID = 5, Name = "Deutsch", Description = "Die Katzen sind hungrig", Flag = "germany.png"},
-				new Language { ID = 6, Name = "Polski", Description = "Koty są głodne", Flag = "poland.png"},
-			};
-
-			foreach (Language language in _languages)
-			{
-				languages.Add(language);
-			}
-
-			isInitialized = true;
-		}
-
 
 		public async Task InitializeAsync()
 		{
 			if (isInitialized)
 				return;
 
+			
+
 			var _languages = new List<Language>()
 			{
-				new Language { Name = "English", Description = "The cats are hungry", Flag = "united_kingdom.png"},
-				new Language { Name = "Francais", Description = "Les chats ont faim", Flag = "france.png"},
-				new Language { Name = "Espanol", Description = "Los gatos tienen hambre", Flag = "spain.png"},
-				new Language { Name = "Italiano", Description = "I gatti hanno fame", Flag = "italy.png"},
-				new Language { Name = "Deutsch", Description = "Die Katzen sind hungrig", Flag = "germany.png"},
-				new Language { Name = "Polski", Description = "Koty są głodne", Flag = "poland.png"},
+				new Language { Name = "English", Description = "The cats are hungry", Flag = "united_kingdom.png", Ranks = CreateRanks()},
+				new Language { Name = "Francais", Description = "Les chats ont faim", Flag = "france.png", Ranks = CreateRanks()},
+				new Language { Name = "Espanol", Description = "Los gatos tienen hambre", Flag = "spain.png", Ranks = CreateRanks()},
+				new Language { Name = "Italiano", Description = "I gatti hanno fame", Flag = "italy.png", Ranks = CreateRanks()},
+				new Language { Name = "Deutsch", Description = "Die Katzen sind hungrig", Flag = "germany.png", Ranks = CreateRanks()},
+				new Language { Name = "Polski", Description = "Koty są głodne", Flag = "poland.png", Ranks = CreateRanks()},
 			};
 
 			foreach (Language language in _languages)
@@ -115,6 +93,17 @@ namespace Vocabulario.Services
 			}
 
 			isInitialized = true;
+		}
+
+		public List<Rank> CreateRanks()
+		{
+			return new List<Rank>()
+			{
+				new Rank { ID = 1, Name = "First", Words = new List<Word>() },
+				new Rank { ID = 2, Name = "Second", Words = new List<Word>() },
+				new Rank { ID = 3, Name = "Third", Words = new List<Word>() },
+				new Rank { ID = 4, Name = "Fourth", Words = new List<Word>() }
+			};
 		}
 	}
 }

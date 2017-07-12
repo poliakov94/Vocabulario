@@ -41,6 +41,11 @@ namespace Vocabulario.Services
 			return database.DeleteAsync(language);
 		}
 
+		public Task<int> ExecuteQuery(string query, object[] args)
+		{
+			return database.ExecuteAsync(query, args);
+		}
+
 
 	}
 }
