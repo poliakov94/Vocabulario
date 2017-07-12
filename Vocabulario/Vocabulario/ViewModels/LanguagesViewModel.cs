@@ -41,6 +41,7 @@ namespace Vocabulario.ViewModels
 			{
 				this.Languages.Clear();
 				var languages = await DataStore.GetLanguagesAsync(true);
+				//var languages = await App.Database.GetLanguagesAsync();
 				this.Languages.ReplaceRange(languages);
 			}
 			catch (Exception ex)

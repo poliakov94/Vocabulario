@@ -8,7 +8,7 @@
 	</CarouselPage.ToolbarItems>
 	<CarouselPage.ItemTemplate>
 		<DataTemplate>
-			<ContentPage WidthRequest="100">
+			<ContentPage>
 				<ContentPage.Padding>
 					<OnPlatform x:TypeArguments="Thickness" iOS="0,40,0,0" Android="0,20,0,0" />
 				</ContentPage.Padding>

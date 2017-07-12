@@ -108,5 +108,29 @@ namespace Vocabulario.Services
 
 			isInitialized = true;
 		}
+
+
+		public async Task InitializeDBAsync()
+		{
+			if (isInitialized)
+				return;
+
+			var _languages = new List<Language>()
+			{
+				new Language { ID = 1, Name = "English", Description = "The cats are hungry", Flag = "united_kingdom.png"},
+				new Language { ID = 2, Name = "Francais", Description = "Les chats ont faim", Flag = "france.png"},
+				new Language { ID = 3, Name = "Espanol", Description = "Los gatos tienen hambre", Flag = "spain.png"},
+				new Language { ID = 4, Name = "Italiano", Description = "I gatti hanno fame", Flag = "italy.png"},
+				new Language { ID = 5, Name = "Deutsch", Description = "Die Katzen sind hungrig", Flag = "germany.png"},
+				new Language { ID = 6, Name = "Polski", Description = "Koty są głodne", Flag = "poland.png"},
+			};
+
+			foreach (Language language in _languages)
+			{
+				await App.Database.SaveLanguageAsync(language);
+			}
+
+			isInitialized = true;
+		}
 	}
 }
