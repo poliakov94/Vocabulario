@@ -9,7 +9,7 @@ namespace Vocabulario.Services
 		Task<bool> AddLanguageAsync(T language);
 		Task<bool> UpdateLanguageAsync(T language);
 		Task<bool> DeleteLanguageAsync(T language);
-		Task<T> GetLanguageAsync(string id);
+		Task<T> GetLanguageAsync(int id);
 		Task<IEnumerable<T>> GetLanguagesAsync(bool forceRefresh = false);
 
 		Task InitializeAsync();

@@ -5,16 +5,6 @@ namespace Vocabulario.Models
 {
 	public class BaseDataObject : ObservableObject
 	{
-		public BaseDataObject()
-		{
-			Id = Guid.NewGuid().ToString();
-		}
-
-		/// <summary>
-		/// Id for item
-		/// </summary>
-		public string Id { get; set; }
-
 		/// <summary>
 		/// Azure created at time stamp
 		/// </summary>
