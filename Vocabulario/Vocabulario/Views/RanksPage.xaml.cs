@@ -24,13 +24,14 @@ namespace Vocabulario.Views
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
 		{
-			var item = args.SelectedItem as Rank;
-			if (item == null)
+			var rank = args.SelectedItem as Rank;
+			if (rank == null)
 				return;
 
-			//await Navigation.PushAsync(new WordsPage(new WordsViewModel(item)));
+			//TODO: Create LearningPage and LearningViewModel(Rank rank)
+			//await Navigation.PushAsync(new LearningPage(new LeraningViewModel(rank)));
 
-			// Manually deselect item
+			// Manually deselect rank
 			ItemsListView.SelectedItem = null;
 		}
 

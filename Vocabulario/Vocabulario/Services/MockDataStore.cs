@@ -108,7 +108,7 @@ namespace Vocabulario.Services
 		{
 			languages = await App.Database.GetLanugagesAsync();
 
-			return languages.Where((Language arg) => arg.ID == language.ID).FirstOrDefault().Ranks;
+			return CreateRanks();
 		}
 	}
 }

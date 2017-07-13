@@ -6,7 +6,9 @@
 			 x:Name="BrowseRanksPage">
 	<ContentPage.Content>
 		<StackLayout>
-			<Label Text="Choose a level below!" />
+			<Label Text="Choose a level below!"
+				   HorizontalOptions="CenterAndExpand"
+				   VerticalOptions="CenterAndExpand"/>
 			<ListView x:Name="ItemsListView"
 				ItemsSource="{Binding Ranks}"
 				VerticalOptions="FillAndExpand"
@@ -18,11 +20,11 @@
 								<Label Text="{Binding Name}"
 								   LineBreakMode="NoWrap"
 								   Style="{DynamicResource ListItemTextStyle}"
-								   FontSize="16"/>
+								   FontSize="20"/>
 								<Label Text="{Binding Description}"
 								   LineBreakMode="NoWrap"
 								   Style="{DynamicResource ListItemDetailTextStyle}"
-								   FontSize="13"/>
+								   FontSize="16"/>
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
