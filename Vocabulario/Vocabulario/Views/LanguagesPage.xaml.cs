@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vocabulario.Models;
 using Vocabulario.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,6 +35,13 @@ namespace Vocabulario.Views
 
 			if (viewModel.Languages.Count == 0)
 				viewModel.LoadLanguagesCommand.Execute(null);
+		}
+
+		async void OnLanguageButton_Clicked(object sender, EventArgs e)
+		{
+			Button btn = (Button)sender;
+			Language language = (Language)btn.CommandParameter;
+			await Navigation.PushAsync(new RanksPage(new RanksViewModel(language)));
 		}
 	}
 }

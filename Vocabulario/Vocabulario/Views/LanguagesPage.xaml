@@ -17,15 +17,20 @@
 						<Image Source="{Binding Flag}"
 							   Margin="20,20,20,20"/>
 						<Label Text="{Binding Name}"
-										Style="{DynamicResource ListItemTextStyle}"
-										FontSize="20"
-										HorizontalOptions="CenterAndExpand"
-										Margin="10,10,10,10"/>
+								Style="{DynamicResource ListItemTextStyle}"
+								FontSize="20"
+								HorizontalOptions="CenterAndExpand"
+								Margin="10,10,10,10"/>
 						<Label Text="{Binding Description}"
-										Style="{DynamicResource ListItemTextDetailStyle}"
-										FontSize="16"
-										HorizontalOptions="CenterAndExpand"
-										Margin="10,10,10,10"/>
+								Style="{DynamicResource ListItemTextDetailStyle}"
+								FontSize="16"
+								HorizontalOptions="CenterAndExpand"
+								Margin="10,10,10,10"/>
+						<Button Text="Start learning!"
+								VerticalOptions="End"
+								HorizontalOptions="Center"
+								Clicked="OnLanguageButton_Clicked"
+								CommandParameter="{Binding .}"/>
 					</StackLayout>
 				</ContentPage.Content>
 			</ContentPage>

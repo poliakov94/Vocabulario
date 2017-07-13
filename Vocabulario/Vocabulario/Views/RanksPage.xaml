@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Vocabulario.Views.RanksPage"
+			 Title="{Binding Title}"
+			 x:Name="BrowseRanksPage">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label Text="Choose a level below!" />
+			<ListView x:Name="ItemsListView"
+				ItemsSource="{Binding Ranks}"
+				VerticalOptions="FillAndExpand"
+				HasUnevenRows="true">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Padding="10">
+								<Label Text="{Binding Name}"
+								   LineBreakMode="NoWrap"
+								   Style="{DynamicResource ListItemTextStyle}"
+								   FontSize="16"/>
+								<Label Text="{Binding Description}"
+								   LineBreakMode="NoWrap"
+								   Style="{DynamicResource ListItemDetailTextStyle}"
+								   FontSize="13"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

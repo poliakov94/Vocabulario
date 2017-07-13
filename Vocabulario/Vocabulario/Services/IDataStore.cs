@@ -11,6 +11,7 @@ namespace Vocabulario.Services
 		Task<bool> DeleteLanguageAsync(T language);
 		Task<T> GetLanguageAsync(int id);
 		Task<IEnumerable<T>> GetLanguagesAsync(bool forceRefresh = false);
+		Task<IEnumerable<Rank>> GetRanksAsync(T language);
 
 		Task InitializeAsync();
 		Task<bool> PullLatestAsync();

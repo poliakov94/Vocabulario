@@ -73,9 +73,7 @@ namespace Vocabulario.Services
 		public async Task InitializeAsync()
 		{
 			if (isInitialized)
-				return;
-
-			
+				return;			
 
 			var _languages = new List<Language>()
 			{
@@ -99,11 +97,18 @@ namespace Vocabulario.Services
 		{
 			return new List<Rank>()
 			{
-				new Rank { ID = 1, Name = "First", Words = new List<Word>() },
-				new Rank { ID = 2, Name = "Second", Words = new List<Word>() },
-				new Rank { ID = 3, Name = "Third", Words = new List<Word>() },
-				new Rank { ID = 4, Name = "Fourth", Words = new List<Word>() }
+				new Rank { ID = 1, Name = "First", Description="Lorum Ipsum...", Words = new List<Word>() },
+				new Rank { ID = 2, Name = "Second", Description="Lorum Ipsum...", Words = new List<Word>() },
+				new Rank { ID = 3, Name = "Third", Description="Lorum Ipsum...", Words = new List<Word>() },
+				new Rank { ID = 4, Name = "Fourth", Description="Lorum Ipsum...", Words = new List<Word>() }
 			};
+		}
+
+		public async Task<IEnumerable<Rank>> GetRanksAsync(Language language)
+		{
+			languages = await App.Database.GetLanugagesAsync();
+
+			return languages.Where((Language arg) => arg.ID == language.ID).FirstOrDefault().Ranks;
 		}
 	}
 }
