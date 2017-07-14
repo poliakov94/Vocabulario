@@ -26,7 +26,7 @@ namespace Vocabulario.ViewModels
 			{
 				var _language = language as Language;
 				Languages.Add(_language);
-				await DataStore.AddLanguageAsync(_language);
+				await Service.SaveLanguage(_language);
 			});
 		}
 
@@ -40,7 +40,7 @@ namespace Vocabulario.ViewModels
 			try
 			{
 				this.Languages.Clear();
-				var languages = await DataStore.GetLanguagesAsync(true);
+				var languages = await Service.GetLanguages();
 				this.Languages.ReplaceRange(languages);
 			}
 			catch (Exception ex)

@@ -26,6 +26,8 @@ namespace Vocabulario.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLCrypto.Resource.String.ApplicationName = global::Vocabulario.Droid.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::Vocabulario.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Vocabulario.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3613,6 +3615,12 @@ namespace Vocabulario.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f09003f
+			public const int ApplicationName = 2131296319;
+			
+			// aapt resource value: 0x7f09003e
+			public const int Hello = 2131296318;
+			
 			// aapt resource value: 0x7f090015
 			public const int abc_action_bar_home_description = 2131296277;
 			
@@ -3706,8 +3714,8 @@ namespace Vocabulario.Droid
 			// aapt resource value: 0x7f090027
 			public const int abc_toolbar_collapse_description = 2131296295;
 			
-			// aapt resource value: 0x7f09003e
-			public const int app_name = 2131296318;
+			// aapt resource value: 0x7f090040
+			public const int app_name = 2131296320;
 			
 			// aapt resource value: 0x7f090036
 			public const int appbar_scrolling_view_behavior = 2131296310;

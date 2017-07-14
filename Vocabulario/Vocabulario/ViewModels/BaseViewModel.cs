@@ -11,7 +11,7 @@ namespace Vocabulario.ViewModels
 		/// <summary>
 		/// Get the azure service instance
 		/// </summary>
-		public IDataStore<Language> DataStore => DependencyService.Get<IDataStore<Language>>();
+		public AzureService Service = DependencyService.Get<AzureService>();
 
 		bool isBusy = false;
 		public bool IsBusy

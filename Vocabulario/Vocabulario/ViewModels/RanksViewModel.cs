@@ -35,7 +35,7 @@ namespace Vocabulario.ViewModels
 			try
 			{
 				Ranks.Clear();
-				var ranks = await DataStore.GetRanksAsync(_Language);
+				var ranks = await Service.GetRanks(_Language);
 				Ranks.ReplaceRange(ranks);
 			}
 			catch (Exception ex)

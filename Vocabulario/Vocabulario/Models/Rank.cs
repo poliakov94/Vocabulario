@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Vocabulario.Models
 {
-	public class Rank
+	public class Rank : BaseDataObject
 	{
-		public int ID { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public List<Word> Words { get; set; }
