@@ -10,6 +10,9 @@ namespace Vocabulario.Models
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
+		public string LanguageID { get; set; }
+
+		[Newtonsoft.Json.JsonIgnore]
 		public List<Word> Words { get; set; }
 	}
 }

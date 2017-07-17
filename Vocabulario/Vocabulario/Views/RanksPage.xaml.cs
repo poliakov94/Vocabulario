@@ -37,6 +37,7 @@ namespace Vocabulario.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
+			//TODO: Create NewRankPage and NewRankPageViewModel(Language language)
 			//await Navigation.PushAsync(new NewRankPage());
 		}
 

@@ -102,21 +102,25 @@ namespace Vocabulario.Services
 			}			
 		}
 
-		public List<Rank> CreateRanks()
+		public Language CreateRanks(Language language)
 		{
-			return new List<Rank>()
+			var ranks =  new List<Rank>()
 			{
-				new Rank { ID = "1", Name = "First", Description="Lorum Ipsum...", Words = new List<Word>() },
-				new Rank { ID = "2", Name = "Second", Description="Lorum Ipsum...", Words = new List<Word>() },
-				new Rank { ID = "3", Name = "Third", Description="Lorum Ipsum...", Words = new List<Word>() },
-				new Rank { ID = "4", Name = "Fourth", Description="Lorum Ipsum...", Words = new List<Word>() }
+				new Rank { Name = "First", Description="Lorum Ipsum...", LanguageID = language.ID },
+				new Rank { Name = "Second", Description="Lorum Ipsum...", LanguageID = language.ID },
+				new Rank { Name = "Third", Description="Lorum Ipsum...", LanguageID = language.ID },
+				new Rank { Name = "Fourth", Description="Lorum Ipsum...", LanguageID = language.ID }
 			};
+
+			language.Ranks = ranks;
+
+			return language;
 		}
 
-		public async Task<IEnumerable<Rank>> GetRanks(Language language)
+		public async Task<Language> GetRanks(Language language)
 		{
 			await Initialize();
-			return CreateRanks();
+			return CreateRanks(language);
 		}
 
 	}

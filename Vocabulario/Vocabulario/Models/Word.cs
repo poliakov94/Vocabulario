@@ -10,5 +10,6 @@ namespace Vocabulario.Models
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
+		public string RankID { get; set; }
 	}
 }
