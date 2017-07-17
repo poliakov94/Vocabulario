@@ -17,10 +17,12 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(AzureService))]
 namespace Vocabulario.Services
 {
-	public class AzureService
+	public class AzureService //TODO: Create interface IAzureService
 	{
 		public MobileServiceClient Client { get; set; }
 		IMobileServiceSyncTable<Language> languageTable;
+		IMobileServiceSyncTable<Rank> rankTable;
+		IMobileServiceSyncTable<Word> wordTable;
 
 		public async Task Initialize()
 		{
@@ -32,17 +34,22 @@ namespace Vocabulario.Services
 
 			Client = new MobileServiceClient(appUrl);
 
-			var path = "syncstorevocabulario.db";
+			var path = "syncstorevocabulariotest.db";
 			path = Path.Combine(MobileServiceClient.DefaultDatabasePath, path);
 			var store = new MobileServiceSQLiteStore(path);
 
 			store.DefineTable<Language>();
+			store.DefineTable<Rank>();
+			store.DefineTable<Word>();
 
 			await Client.SyncContext.InitializeAsync(store);
 
 			languageTable = Client.GetSyncTable<Language>();
+			rankTable = Client.GetSyncTable<Rank>();
+			wordTable = Client.GetSyncTable<Word>();
 
 			//await InitializeAsync();
+			//await CreateRanks();
 		}
 
 		public async Task SyncLanguage()
@@ -62,6 +69,40 @@ namespace Vocabulario.Services
 			}
 		}
 
+		public async Task SyncRank()
+		{
+			try
+			{
+				if (!CrossConnectivity.Current.IsConnected)
+					return;
+
+				await rankTable.PullAsync("allRank", rankTable.CreateQuery());
+
+				await Client.SyncContext.PushAsync();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("Unable to sync ranks, going offline: " + ex);
+			}
+		}
+
+		public async Task SyncWord()
+		{
+			try
+			{
+				if (!CrossConnectivity.Current.IsConnected)
+					return;
+
+				await wordTable.PullAsync("allWord", wordTable.CreateQuery());
+
+				await Client.SyncContext.PushAsync();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("Unable to sync words, going offline: " + ex);
+			}
+		}
+
 		public async Task<ObservableCollection<Language>> GetLanguages()
 		{
 			await Initialize();
@@ -69,7 +110,39 @@ namespace Vocabulario.Services
 
 			return await languageTable.ToCollectionAsync();
 		}
-		
+
+		public async Task<ObservableCollection<Rank>> GetRanks()
+		{
+			await Initialize();
+			await SyncRank();
+
+			return await rankTable.ToCollectionAsync();
+		}
+
+		public async Task<ObservableCollection<Rank>> GetRanks(string languageID)
+		{
+			await Initialize();
+			await SyncRank();
+
+			return await rankTable.Where(i => i.LanguageID == languageID).ToCollectionAsync();
+		}
+
+		public async Task<ObservableCollection<Word>> GetWords()
+		{
+			await Initialize();
+			await SyncWord();
+
+			return await wordTable.ToCollectionAsync();
+		}
+
+		public async Task<ObservableCollection<Word>> GetWords(string rankID)
+		{
+			await Initialize();
+			await SyncWord();
+
+			return await wordTable.Where(i => i.RankID == rankID).ToCollectionAsync();
+		}
+
 		public async Task<Language> SaveLanguage(Language language)
 		{
 			await Initialize();
@@ -82,6 +155,34 @@ namespace Vocabulario.Services
 			await SyncLanguage();
 
 			return language;
+		}
+
+		public async Task<Rank> SaveRank(Rank rank)
+		{
+			await Initialize();
+
+			if (rank.ID != null)
+				await rankTable.UpdateAsync(rank);
+			else
+				await rankTable.InsertAsync(rank);
+
+			await SyncLanguage();
+
+			return rank;
+		}
+
+		public async Task<Word> SaveWord(Word word)
+		{
+			await Initialize();
+
+			if (word.ID != null)
+				await wordTable.UpdateAsync(word);
+			else
+				await wordTable.InsertAsync(word);
+
+			await SyncLanguage();
+
+			return word;
 		}
 
 		public async Task InitializeAsync()
@@ -102,26 +203,24 @@ namespace Vocabulario.Services
 			}			
 		}
 
-		public Language CreateRanks(Language language)
+		public async Task CreateRanks()
 		{
-			var ranks =  new List<Rank>()
+			var _languages = await GetLanguages();
+			foreach (Language language in _languages)
 			{
-				new Rank { Name = "First", Description="Lorum Ipsum...", LanguageID = language.ID },
-				new Rank { Name = "Second", Description="Lorum Ipsum...", LanguageID = language.ID },
-				new Rank { Name = "Third", Description="Lorum Ipsum...", LanguageID = language.ID },
-				new Rank { Name = "Fourth", Description="Lorum Ipsum...", LanguageID = language.ID }
-			};
+				var _ranks = new List<Rank>()
+				{
+					new Rank { Name = "First", Description="Lorum Ipsum...", LanguageID = language.ID },
+					new Rank { Name = "Second", Description="Lorum Ipsum...", LanguageID = language.ID },
+					new Rank { Name = "Third", Description="Lorum Ipsum...", LanguageID = language.ID },
+					new Rank { Name = "Fourth", Description="Lorum Ipsum...", LanguageID = language.ID }
+				};
 
-			language.Ranks = ranks;
-
-			return language;
+				foreach (Rank rank in _ranks)
+				{
+					await SaveRank(rank);
+				}
+			}
 		}
-
-		public async Task<Language> GetRanks(Language language)
-		{
-			await Initialize();
-			return CreateRanks(language);
-		}
-
 	}
 }
